@@ -27,9 +27,29 @@
   },
   "remediateSettings": {
     "enableRenovate": true,
-    "workflowRules": {
-      "enabled": true
-    }
+    "prBodyTemplate": "{{{header}}}{{{table}}}{{{notes}}}{{{changelogs}}}{{{configDescription}}}{{{controls}}}{{{footer}}}",
+    "extends": [
+      "schedule:monthly",
+      ":label(dependency)",
+      ":ignoreModulesAndTests",
+      ":prHourlyLimit2",
+      "group:monorepos",
+      "group:recommended",
+      "docker:disable"
+    ],
+    "velaci": {
+      "enabled": false
+    },
+    "packageRules": [
+      {
+        "matchDatasources": ["docker", "velaci"],
+        "registryUrls": ["https://hub.docker.target.com"]
+      }
+    ],
+    "branchPrefix": "sca/",
+    "dependencyDashboard": true,
+    "dependencyDashboardAutoclose": true,
+    "dependencyDashboardApproval": true
   },
    "imageSettings":{
        "imageTracing":{
